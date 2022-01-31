@@ -636,12 +636,15 @@ var KeyphraseLinkBuilder = function () {
     var newInnerHTMLList = [];
     var matchedCounts = 0;
     foundNodes.forEach(function (node) {
-      if (node.parentElement && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence)) {
+      if (node.hasChildNodes() && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence)) {
         // const parentNode = node.parentElement;
         // parentNode.replaceChild(this.getSponsoredChild(), node);
-        console.log('linkTop node.innerHTML==>', node.innerHTML);
+        node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
         newInnerHTMLList.push(node.innerHTML);
-        matchedCounts++;
+        matchedCounts++; // node.replaceChild(this.getSponsoredChild, node.firstChild())
+
+        console.log('linkTop node.innerHTML==>', node.innerHTML); // newInnerHTMLList.push((node as Element).innerHTML);
+        // matchedCounts++;
       }
     });
     return newInnerHTMLList;
@@ -654,9 +657,10 @@ var KeyphraseLinkBuilder = function () {
     var matchedCounts = 0;
     foundNodes.forEach(function (node, index) {
       // pair indexes
-      if (!(index % 2) && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence) && node.parentElement) {
+      if (!(index % 2) && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence) && node.hasChildNodes()) {
         // const parentNode = node;
         // parentNode.replaceChild(this.getSponsoredChild(), node);
+        node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
         console.log('linkSpreading node.innerHTML==>', node.innerHTML);
         newInnerHTMLList.push(node.innerHTML);
         matchedCounts++;
@@ -666,10 +670,11 @@ var KeyphraseLinkBuilder = function () {
     if (matchedCounts < Number(this.matchedPhrase.phrase.numberOfOccurrence)) {
       foundNodes.forEach(function (node, index) {
         // odd indexes
-        if (index % 2 && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence) && node.parentElement) {
+        if (index % 2 && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence) && node.hasChildNodes()) {
           console.log('linking odd indexes'); // const parentNode = node;
           // parentNode.replaceChild(this.getSponsoredChild(), node);
 
+          node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
           console.log('linkSpreading node.innerHTML==>', node.innerHTML);
           newInnerHTMLList.push(node.innerHTML);
           matchedCounts++;
@@ -681,11 +686,14 @@ var KeyphraseLinkBuilder = function () {
   };
 
   KeyphraseLinkBuilder.prototype.linkAll = function (foundNodes) {
+    var _this = this;
+
     var newInnerHTMLList = [];
     foundNodes.forEach(function (node) {
-      if (node.parentElement) {
+      if (node.hasChildNodes()) {
         // const parentNode = node.c;
         // parentNode.replaceChild(this.getSponsoredChild(), node);
+        node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
         console.log('linkAll node.innerHTML==>', node.innerHTML);
         newInnerHTMLList.push(node.innerHTML);
       }
@@ -761,7 +769,7 @@ var NodeFilter = function () {
 
   NodeFilter.prototype.scanForChildTextNodes = function (node) {
     if (node.hasChildNodes() && node.nodeType !== 3 && !this.excludedTags.includes(node.nodeName)) {
-      console.log('node.nodeName 16:06===>', node.nodeName);
+      // console.log('node.nodeName 16:06===>', node.nodeName);
       node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
     } else {
       this.processNode(node);
@@ -786,8 +794,8 @@ var NodeFilter = function () {
 
   NodeFilter.prototype.processChildElement = function (nodeElement) {
     if (this.excludedTags.includes(nodeElement.tagName)) {
-      console.log('nodeElement.tagName 15:42===>', nodeElement.tagName);
-      console.log('nodeElement.innerHTML===>', nodeElement.innerHTML);
+      // console.log('nodeElement.tagName 15:42===>', nodeElement.tagName);
+      // console.log('nodeElement.innerHTML===>', nodeElement.innerHTML);
       return;
     } // console.log('####processChildElement asdfadfasdfasdf 15:32####');
     // if ((nodeElement.attributes
