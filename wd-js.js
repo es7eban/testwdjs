@@ -846,6 +846,7 @@ var NodeFilter = function () {
     // }
 
     if (node.innerHTML) {
+      console.log('node.innerHTML.replace==>', node.innerHTML);
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       node.innerHTML = newInnerHTML;
     }
