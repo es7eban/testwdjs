@@ -750,7 +750,7 @@ var NodeFilter = function () {
     var cleanNodes = [];
 
     for (var index = 0; index < matchedNodes.length; index++) {
-      console.log('matchedNodes[index].tagName==>', matchedNodes[index].tagName);
+      console.log('matchedNodes[index].tagName  15:32==>', matchedNodes[index].tagName);
 
       if (!this.excludedTags.includes(matchedNodes[index].tagName)) {
         cleanNodes.push(matchedNodes[index]);
@@ -785,12 +785,12 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.processChildElement = function (nodeElement) {
-    console.log('####processChildElement asdfadfasdfasdf 14:58####'); // if ((nodeElement.attributes
+    // console.log('####processChildElement asdfadfasdfasdf 15:32####');
+    // if ((nodeElement.attributes
     //     && nodeElement.getAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`) === 'visited')
     //     || nodeElement.parentElement?.getAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`) === 'visited') {
     //     return;
     // }
-
     if (nodeElement.attributes && nodeElement.getAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, '')) === 'visited') {
       return;
     }
