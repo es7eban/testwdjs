@@ -787,7 +787,7 @@ var NodeFilter = function () {
   NodeFilter.prototype.processChildElement = function (nodeElement) {
     var _a;
 
-    console.log('####processChildElement asdfadfasdfasdf 10:19####');
+    console.log('####processChildElement asdfadfasdfasdf 10:47####');
 
     if (nodeElement.attributes && nodeElement.getAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, '')) === 'visited' || ((_a = nodeElement.parentElement) === null || _a === void 0 ? void 0 : _a.getAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, ''))) === 'visited') {
       return;
@@ -799,7 +799,7 @@ var NodeFilter = function () {
   NodeFilter.prototype.ifMatchKeyphraseStoreElement = function (nodeElement) {
     var _a, _b;
 
-    console.log('####ifMatchKeyphraseStoreElement asdfadfasdfasdf 10:19####');
+    console.log('####ifMatchKeyphraseStoreElement asdfadfasdfasdf 10:47####');
 
     if ((_a = nodeElement.parentElement) === null || _a === void 0 ? void 0 : _a.innerHTML) {
       if (nodeElement.attributes) {
