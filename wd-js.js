@@ -768,7 +768,11 @@ var NodeFilter = function () {
 
 
   NodeFilter.prototype.scanForChildTextNodes = function (node) {
-    if (node.hasChildNodes() && node.nodeType !== 3 && !this.excludedTags.includes(node.nodeName)) {
+    if (this.excludedTags.includes(node.nodeName)) {
+      return;
+    }
+
+    if (node.hasChildNodes() && node.nodeType !== 3) {
       // console.log('node.nodeName 16:06===>', node.nodeName);
       node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
     } else {
@@ -841,7 +845,7 @@ var NodeFilter = function () {
     //     node.parentElement.innerHTML = newInnerHTML;
     // }
 
-    if (node.innerHTML && !node.hasChildNodes()) {
+    if (node.innerHTML) {
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       node.innerHTML = newInnerHTML;
     }
@@ -929,8 +933,4 @@ exports.NodeSelector = NodeSelector;
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./resources/js/index.ts");
-/******/ 	
-/******/ })()
-;
+/
