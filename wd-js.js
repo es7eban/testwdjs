@@ -750,6 +750,8 @@ var NodeFilter = function () {
     var cleanNodes = [];
 
     for (var index = 0; index < matchedNodes.length; index++) {
+      console.log('matchedNodes[index].tagName==>', matchedNodes[index].tagName);
+
       if (!this.excludedTags.includes(matchedNodes[index].tagName)) {
         cleanNodes.push(matchedNodes[index]);
       }
@@ -783,7 +785,7 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.processChildElement = function (nodeElement) {
-    console.log('####processChildElement asdfadfasdfasdf 13:18####'); // if ((nodeElement.attributes
+    console.log('####processChildElement asdfadfasdfasdf 14:58####'); // if ((nodeElement.attributes
     //     && nodeElement.getAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`) === 'visited')
     //     || nodeElement.parentElement?.getAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`) === 'visited') {
     //     return;
@@ -797,9 +799,8 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.ifMatchKeyphraseStoreElement = function (nodeElement) {
-    var _a;
+    var _a; // console.log('####ifMatchKeyphraseStoreElement asdfadfasdfasdf 13:18####');
 
-    console.log('####ifMatchKeyphraseStoreElement asdfadfasdfasdf 13:18####');
 
     if (nodeElement.innerHTML) {
       if (nodeElement.attributes) {
