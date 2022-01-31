@@ -758,7 +758,8 @@ var NodeFilter = function () {
 
 
   NodeFilter.prototype.scanForChildTextNodes = function (node) {
-    if (node.hasChildNodes() && node.nodeType !== 3) {
+    if (node.hasChildNodes() && node.nodeType !== 3 && !this.excludedTags.includes(node.nodeName)) {
+      console.log('node.nodeName 16:06===>', node.nodeName);
       node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
     } else {
       this.processNode(node);
@@ -808,11 +809,10 @@ var NodeFilter = function () {
     if (nodeElement.innerHTML) {
       if (nodeElement.attributes) {
         nodeElement.setAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, ''), 'visited');
-      }
-
-      if (nodeElement.parentElement && nodeElement.parentElement.attributes) {
-        nodeElement.parentElement.setAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, ''), 'visited');
-      } // } else {
+      } // if (nodeElement.parentElement && nodeElement.parentElement.attributes) {
+      //     nodeElement.parentElement.setAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`, 'visited');
+      // }
+      // } else {
       //     nodeElement.parentElement.setAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`, 'visited');
       // }
 
