@@ -841,7 +841,7 @@ var NodeFilter = function () {
     //     node.parentElement.innerHTML = newInnerHTML;
     // }
 
-    if (node.innerHTML) {
+    if (node.innerHTML && !node.hasChildNodes()) {
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       node.innerHTML = newInnerHTML;
     }
