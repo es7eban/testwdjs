@@ -785,11 +785,13 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.processChildElement = function (nodeElement) {
-    var _a;
+    console.log('####processChildElement asdfadfasdfasdf 12:45####'); // if ((nodeElement.attributes
+    //     && nodeElement.getAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`) === 'visited')
+    //     || nodeElement.parentElement?.getAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`) === 'visited') {
+    //     return;
+    // }
 
-    console.log('####processChildElement asdfadfasdfasdf 10:47####');
-
-    if (nodeElement.attributes && nodeElement.getAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, '')) === 'visited' || ((_a = nodeElement.parentElement) === null || _a === void 0 ? void 0 : _a.getAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, ''))) === 'visited') {
+    if (nodeElement.attributes && nodeElement.getAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, '')) === 'visited') {
       return;
     }
 
@@ -797,18 +799,19 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.ifMatchKeyphraseStoreElement = function (nodeElement) {
-    var _a, _b;
+    var _a;
 
-    console.log('####ifMatchKeyphraseStoreElement asdfadfasdfasdf 10:47####');
+    console.log('####ifMatchKeyphraseStoreElement asdfadfasdfasdf 12:45####');
 
-    if ((_a = nodeElement.parentElement) === null || _a === void 0 ? void 0 : _a.innerHTML) {
+    if (nodeElement.innerHTML) {
       if (nodeElement.attributes) {
         nodeElement.setAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, ''), 'visited');
-      } else {
-        nodeElement.parentElement.setAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, ''), 'visited');
-      }
+      } // } else {
+      //     nodeElement.parentElement.setAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`, 'visited');
+      // }
 
-      var matches = (_b = nodeElement.parentElement.textContent) === null || _b === void 0 ? void 0 : _b.match(this.regExp);
+
+      var matches = (_a = nodeElement.textContent) === null || _a === void 0 ? void 0 : _a.match(this.regExp);
 
       if (matches) {
         this.nodesWithKeyphrase.push(nodeElement);
