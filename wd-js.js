@@ -808,6 +808,10 @@ var NodeFilter = function () {
     if (nodeElement.innerHTML) {
       if (nodeElement.attributes) {
         nodeElement.setAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, ''), 'visited');
+      }
+
+      if (nodeElement.parentElement && nodeElement.parentElement.attributes) {
+        nodeElement.parentElement.setAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, ''), 'visited');
       } // } else {
       //     nodeElement.parentElement.setAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`, 'visited');
       // }
