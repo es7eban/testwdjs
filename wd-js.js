@@ -741,24 +741,21 @@ var NodeFilter = function () {
       this.replaceAndTagKeyphraseInHtmlOf(this.nodesWithKeyphrase[index]);
     }
 
-    var matchedNodes = Array.from(document.body.querySelectorAll("[data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\"]"));
-    this.matchedPhrase.keyphraseNodes = this.cleanNodesWithexcludedTags(matchedNodes);
+    var matchedNodes = Array.from(document.body.querySelectorAll("[data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\"]")); // this.matchedPhrase.keyphraseNodes = this.cleanNodesWithexcludedTags(matchedNodes) as [];
+
+    this.matchedPhrase.keyphraseNodes = matchedNodes;
     return this.matchedPhrase;
-  };
+  }; // private cleanNodesWithexcludedTags(matchedNodes: Element[]): Element[] {
+  //     const cleanNodes = [];
+  //     for (let index = 0; index < matchedNodes.length; index++) {
+  //         console.log('matchedNodes[index].tagName  15:32==>', matchedNodes[index].tagName)
+  //         if (!this.excludedTags.includes(matchedNodes[index].tagName as string)) {
+  //             cleanNodes.push(matchedNodes[index]);
+  //         }
+  //     }
+  //     return cleanNodes;
+  // }
 
-  NodeFilter.prototype.cleanNodesWithexcludedTags = function (matchedNodes) {
-    var cleanNodes = [];
-
-    for (var index = 0; index < matchedNodes.length; index++) {
-      console.log('matchedNodes[index].tagName  15:32==>', matchedNodes[index].tagName);
-
-      if (!this.excludedTags.includes(matchedNodes[index].tagName)) {
-        cleanNodes.push(matchedNodes[index]);
-      }
-    }
-
-    return cleanNodes;
-  };
 
   NodeFilter.prototype.scanForChildTextNodes = function (node) {
     if (node.hasChildNodes() && node.nodeType !== 3) {
@@ -785,12 +782,16 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.processChildElement = function (nodeElement) {
-    // console.log('####processChildElement asdfadfasdfasdf 15:32####');
+    if (this.excludedTags.includes(nodeElement.tagName)) {
+      return;
+    } // console.log('####processChildElement asdfadfasdfasdf 15:32####');
     // if ((nodeElement.attributes
     //     && nodeElement.getAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`) === 'visited')
     //     || nodeElement.parentElement?.getAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`) === 'visited') {
     //     return;
     // }
+
+
     if (nodeElement.attributes && nodeElement.getAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, '')) === 'visited') {
       return;
     }
