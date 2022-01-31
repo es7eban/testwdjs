@@ -637,10 +637,10 @@ var KeyphraseLinkBuilder = function () {
     var matchedCounts = 0;
     foundNodes.forEach(function (node) {
       if (node.parentElement && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence)) {
-        var parentNode = node.parentElement;
-        parentNode.replaceChild(_this.getSponsoredChild(), node);
-        console.log('linkTop parentNode.innerHTML==>', parentNode.innerHTML);
-        newInnerHTMLList.push(parentNode.innerHTML);
+        // const parentNode = node.parentElement;
+        // parentNode.replaceChild(this.getSponsoredChild(), node);
+        console.log('linkTop node.innerHTML==>', node.innerHTML);
+        newInnerHTMLList.push(node.innerHTML);
         matchedCounts++;
       }
     });
@@ -655,10 +655,10 @@ var KeyphraseLinkBuilder = function () {
     foundNodes.forEach(function (node, index) {
       // pair indexes
       if (!(index % 2) && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence) && node.parentElement) {
-        var parentNode = node;
-        parentNode.replaceChild(_this.getSponsoredChild(), node);
-        console.log('linkSpreading parentNode.innerHTML==>', parentNode.innerHTML);
-        newInnerHTMLList.push(parentNode.innerHTML);
+        // const parentNode = node;
+        // parentNode.replaceChild(this.getSponsoredChild(), node);
+        console.log('linkSpreading node.innerHTML==>', node.innerHTML);
+        newInnerHTMLList.push(node.innerHTML);
         matchedCounts++;
       }
     });
@@ -667,11 +667,11 @@ var KeyphraseLinkBuilder = function () {
       foundNodes.forEach(function (node, index) {
         // odd indexes
         if (index % 2 && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence) && node.parentElement) {
-          console.log('linking odd indexes');
-          var parentNode = node;
-          parentNode.replaceChild(_this.getSponsoredChild(), node);
-          console.log('linkSpreading parentNode.innerHTML==>', parentNode.innerHTML);
-          newInnerHTMLList.push(parentNode.innerHTML);
+          console.log('linking odd indexes'); // const parentNode = node;
+          // parentNode.replaceChild(this.getSponsoredChild(), node);
+
+          console.log('linkSpreading node.innerHTML==>', node.innerHTML);
+          newInnerHTMLList.push(node.innerHTML);
           matchedCounts++;
         }
       });
@@ -681,15 +681,13 @@ var KeyphraseLinkBuilder = function () {
   };
 
   KeyphraseLinkBuilder.prototype.linkAll = function (foundNodes) {
-    var _this = this;
-
     var newInnerHTMLList = [];
     foundNodes.forEach(function (node) {
       if (node.parentElement) {
-        var parentNode = node;
-        parentNode.replaceChild(_this.getSponsoredChild(), node);
-        console.log('linkAll parentNode.innerHTML==>', parentNode.innerHTML);
-        newInnerHTMLList.push(parentNode.innerHTML);
+        // const parentNode = node.c;
+        // parentNode.replaceChild(this.getSponsoredChild(), node);
+        console.log('linkAll node.innerHTML==>', node.innerHTML);
+        newInnerHTMLList.push(node.innerHTML);
       }
     });
     return newInnerHTMLList;
