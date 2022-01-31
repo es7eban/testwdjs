@@ -639,6 +639,7 @@ var KeyphraseLinkBuilder = function () {
       if (node.parentElement && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence)) {
         var parentNode = node.parentElement;
         parentNode.replaceChild(_this.getSponsoredChild(), node);
+        console.log('linkTop parentNode.innerHTML==>', parentNode.innerHTML);
         newInnerHTMLList.push(parentNode.innerHTML);
         matchedCounts++;
       }
@@ -654,8 +655,9 @@ var KeyphraseLinkBuilder = function () {
     foundNodes.forEach(function (node, index) {
       // pair indexes
       if (!(index % 2) && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence) && node.parentElement) {
-        var parentNode = node.parentElement;
+        var parentNode = node;
         parentNode.replaceChild(_this.getSponsoredChild(), node);
+        console.log('linkSpreading parentNode.innerHTML==>', parentNode.innerHTML);
         newInnerHTMLList.push(parentNode.innerHTML);
         matchedCounts++;
       }
@@ -666,8 +668,9 @@ var KeyphraseLinkBuilder = function () {
         // odd indexes
         if (index % 2 && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence) && node.parentElement) {
           console.log('linking odd indexes');
-          var parentNode = node.parentElement;
+          var parentNode = node;
           parentNode.replaceChild(_this.getSponsoredChild(), node);
+          console.log('linkSpreading parentNode.innerHTML==>', parentNode.innerHTML);
           newInnerHTMLList.push(parentNode.innerHTML);
           matchedCounts++;
         }
@@ -683,8 +686,9 @@ var KeyphraseLinkBuilder = function () {
     var newInnerHTMLList = [];
     foundNodes.forEach(function (node) {
       if (node.parentElement) {
-        var parentNode = node.parentElement;
+        var parentNode = node;
         parentNode.replaceChild(_this.getSponsoredChild(), node);
+        console.log('linkAll parentNode.innerHTML==>', parentNode.innerHTML);
         newInnerHTMLList.push(parentNode.innerHTML);
       }
     });
@@ -741,7 +745,7 @@ var NodeFilter = function () {
       this.replaceAndTagKeyphraseInHtmlOf(this.nodesWithKeyphrase[index]);
     }
 
-    var matchedNodes = Array.from(document.body.querySelectorAll("[data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\"]")); // this.matchedPhrase.keyphraseNodes = this.cleanNodesWithexcludedTags(matchedNodes) as [];
+    var matchedNodes = document.body.querySelectorAll("[data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\"]"); // this.matchedPhrase.keyphraseNodes = this.cleanNodesWithexcludedTags(matchedNodes) as [];
 
     this.matchedPhrase.keyphraseNodes = matchedNodes;
     return this.matchedPhrase;
