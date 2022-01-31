@@ -817,11 +817,14 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.replaceAndTagKeyphraseInHtmlOf = function (node) {
-    var foundTag = "<span data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\">" + this.keyPhrase.name + "</span>";
+    var foundTag = "<span data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\">" + this.keyPhrase.name + "</span>"; // if (node.parentElement && node.parentElement.innerHTML) {
+    //     const newInnerHTML = node.parentElement.innerHTML.replace(this.regExp, foundTag);
+    //     node.parentElement.innerHTML = newInnerHTML;
+    // }
 
-    if (node.parentElement && node.parentElement.innerHTML) {
-      var newInnerHTML = node.parentElement.innerHTML.replace(this.regExp, foundTag);
-      node.parentElement.innerHTML = newInnerHTML;
+    if (node.innerHTML) {
+      var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
+      node.innerHTML = newInnerHTML;
     }
   };
 
