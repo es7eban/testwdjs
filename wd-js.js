@@ -783,6 +783,7 @@ var NodeFilter = function () {
 
   NodeFilter.prototype.processChildElement = function (nodeElement) {
     if (this.excludedTags.includes(nodeElement.tagName)) {
+      console.log('nodeElement.tagName 15:42===>', nodeElement.tagName);
       return;
     } // console.log('####processChildElement asdfadfasdfasdf 15:32####');
     // if ((nodeElement.attributes
