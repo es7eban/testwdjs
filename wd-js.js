@@ -862,8 +862,9 @@ var NodeFilter = function () {
 
     if (node.innerHTML) {
       console.log('node.innerHTML 17:38 ====>', node.innerHTML);
-      var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
-      node.innerHTML = newInnerHTML;
+      var newInnerHTML = node.innerHTML;
+      newInnerHTML.replace(this.regExp, foundTag); // const newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
+      // node.innerHTML = newInnerHTML;
     }
   };
 
