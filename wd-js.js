@@ -781,19 +781,17 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.processNode = function (childNode) {
-    if (childNode.parentElement && childNode.parentElement.children.length > 0) {
-      for (var index = 0; index < childNode.parentElement.children.length; index++) {
-        if (childNode.parentElement.children.item(index)) {
-          this.processChildElement(childNode.parentElement.children.item(index));
-        }
-      }
-    }
-
-    if (childNode.parentElement && childNode.parentElement.children.length === 0) {
-      this.processChildElement(childNode);
-    }
-
-    return;
+    // if (childNode.parentElement && childNode.parentElement.children.length > 0) {
+    //     for (let index = 0; index < childNode.parentElement.children.length; index++) {
+    //         if (childNode.parentElement.children.item(index)) {
+    //             this.processChildElement(childNode.parentElement.children.item(index) as Element);
+    //         }
+    //     }
+    // }
+    // if (childNode.parentElement && childNode.parentElement.children.length === 0) {
+    //     this.processChildElement(childNode as Element);
+    // }
+    this.processChildElement(childNode);
   };
 
   NodeFilter.prototype.processChildElement = function (nodeElement) {
