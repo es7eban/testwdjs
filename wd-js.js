@@ -840,8 +840,6 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.replaceAndTagKeyphraseInHtmlOf = function (node) {
-    var _a;
-
     var foundTag = "<span data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\">" + this.keyPhrase.name + "</span>"; // if (node.parentElement && node.parentElement.innerHTML) {
     //     const newInnerHTML = node.parentElement.innerHTML.replace(this.regExp, foundTag);
     //     node.parentElement.innerHTML = newInnerHTML;
@@ -849,15 +847,13 @@ var NodeFilter = function () {
     //check for childrens here or before again
 
     console.log('node.tagName==>', node.tagName);
-    console.log('node.firstChild ===>', node.firstChild);
-    console.log('node.firstChild?.childNodes.length ===>', (_a = node.firstChild) === null || _a === void 0 ? void 0 : _a.childNodes.length);
-
-    if (node.firstChild && node.firstChild.childNodes.length > 2) {
-      return;
-    }
+    console.log('node.children.length ===>', node.children.length); // console.log('node.firstChild?.childNodes.length ===>', node.firstChild?.childNodes.length);
+    // if (node.firstChild && node.firstChild.childNodes.length > 2) {
+    //     return;
+    // }
 
     if (node.innerHTML) {
-      console.log('node.innerHTML 09:31 ====>', node.innerHTML);
+      console.log('node.innerHTML 10:38 ====>', node.innerHTML);
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       node.innerHTML = newInnerHTML;
     }
