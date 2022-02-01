@@ -858,10 +858,11 @@ var NodeFilter = function () {
     // if (node.innerHTML && node.childNodes.length < 2) {
 
     if (node.innerHTML) {
-      console.log('node.innerHTML 20:09 ====>', node.innerHTML);
+      // console.log('node.innerHTML 20:09 ====>', node.innerHTML);
       var newInnerHTML = node.innerHTML;
       newInnerHTML.replace(this.regExp, foundTag);
-      console.log('TEST ===>', /<([A-Za-z][A-Za-z0-9]*)\b[^>]*>(.*?)<\/\1>/.test(newInnerHTML)); // const newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
+      console.log('newInnerHTML 20:14 ====>', newInnerHTML);
+      console.log('TEST ===>', /<(?=.*? .*?\/ ?>|br|hr|input|!--|wbr)[a-z]+.*?>|<([a-z]+).*?<\/\1>/i.test(newInnerHTML)); // const newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       // node.innerHTML = newInnerHTML;
     }
   };
