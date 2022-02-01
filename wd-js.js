@@ -781,15 +781,15 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.processNode = function (childNode) {
-    if (childNode.childNodes.length > 0) {
-      for (var index = 0; index < childNode.childNodes.length; index++) {
-        if (childNode.childNodes.item(index)) {
-          this.processChildElement(childNode.childNodes.item(index));
+    if (childNode.parentElement && childNode.parentElement.children.length > 0) {
+      for (var index = 0; index < childNode.parentElement.children.length; index++) {
+        if (childNode.parentElement.children.item(index)) {
+          this.processChildElement(childNode.parentElement.children.item(index));
         }
       }
     }
 
-    if (childNode.childNodes.length === 0) {
+    if (childNode.parentElement && childNode.parentElement.children.length === 0) {
       this.processChildElement(childNode);
     }
 
@@ -840,9 +840,21 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.replaceAndTagKeyphraseInHtmlOf = function (node) {
-    var foundTag = "<span data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\">" + this.keyPhrase.name + "</span>";
+    var foundTag = "<span data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\">" + this.keyPhrase.name + "</span>"; // if (node.parentElement && node.parentElement.innerHTML) {
+    //     const newInnerHTML = node.parentElement.innerHTML.replace(this.regExp, foundTag);
+    //     node.parentElement.innerHTML = newInnerHTML;
+    // }
+    //check for childrens here or before again
+
+    console.log('node.tagName==>', node.tagName);
+    console.log('node.children.length ===>', node.children.length);
+    console.log('node.childNodes.length ===>', node.childNodes.length); // console.log('node.firstChild?.childNodes.length ===>', node.firstChild?.childNodes.length);
+    // if (node.firstChild && node.firstChild.childNodes.length > 2) {
+    //     return;
+    // }
 
     if (node.innerHTML && node.childNodes.length < 2) {
+      console.log('node.innerHTML 11:56 ====>', node.innerHTML);
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       node.innerHTML = newInnerHTML;
     }
