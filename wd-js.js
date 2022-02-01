@@ -844,8 +844,11 @@ var NodeFilter = function () {
     //     const newInnerHTML = node.parentElement.innerHTML.replace(this.regExp, foundTag);
     //     node.parentElement.innerHTML = newInnerHTML;
     // }
+    //check for childrens here or before again
 
-    if (node.innerHTML) {
+    console.log('node.tagName 09:16 ==>', node.tagName);
+
+    if (node.innerHTML && !this.excludedTags.includes(node.tagName)) {
       console.log('node.innerHTML.replace==>', node.innerHTML);
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       node.innerHTML = newInnerHTML;
