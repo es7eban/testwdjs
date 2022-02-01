@@ -773,9 +773,14 @@ var NodeFilter = function () {
     } // if (node.childNodes.length > 2 && node.nodeType !== 3) {
 
 
-    if (node.hasChildNodes() && node.nodeType !== 3) {
+    if (node.children.length > 1 && node.nodeType !== 3) {
       // console.log('node.nodeName 16:06===>', node.nodeName);
-      node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
+      // node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
+      for (var index = 0; index < node.children.length; index++) {
+        if (node.children.item(index)) {
+          this.scanForChildTextNodes.bind(node.children.item(index));
+        }
+      }
     } else {
       console.log('node.nodeName ====>', node.nodeName);
       console.log('(node as Element).tagName ====>', node.tagName);
