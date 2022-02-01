@@ -768,8 +768,6 @@ var NodeFilter = function () {
 
 
   NodeFilter.prototype.scanForChildTextNodes = function (node) {
-    var _a;
-
     if (this.excludedTags.includes(node.nodeName)) {
       return;
     } // if (node.childNodes.length > 2 && node.nodeType !== 3) {
@@ -782,9 +780,9 @@ var NodeFilter = function () {
         if (node.children.item(index)) {
           this.scanForChildTextNodes(node.children.item(index));
         }
-      }
-    } else if ((_a = node.firstElementChild) === null || _a === void 0 ? void 0 : _a.children) {
-      this.scanForChildTextNodes(node.firstElementChild);
+      } // } else if ((node as Element).firstElementChild?.children) {
+      //     this.scanForChildTextNodes((node as Element).firstElementChild as unknown as Element)
+
     } else {
       console.log('node.nodeName ====>', node.nodeName);
       console.log('(node as Element).tagName ====>', node.tagName);
