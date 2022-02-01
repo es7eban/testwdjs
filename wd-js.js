@@ -775,18 +775,15 @@ var NodeFilter = function () {
     if (node.hasChildNodes() && node.nodeType !== 3) {
       node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
     } else {
-      if (this.excludedTags.includes(node.nodeName)) {
-        return;
-      }
-
-      console.log('node.nodeName ====>', node.nodeName);
-      console.log('(node as Element).tagName ====>', node.tagName);
-      console.log("processing (node as Element).innerHTML " + this.keyPhrase.name + " ===>", node.innerHTML);
       this.processNode(node);
     }
   };
 
   NodeFilter.prototype.processNode = function (childNode) {
+    if (this.excludedTags.includes(childNode.nodeName)) {
+      return;
+    }
+
     if (childNode.parentElement && childNode.parentElement.children.length > 0) {
       for (var index = 0; index < childNode.parentElement.children.length; index++) {
         if (childNode.parentElement.children.item(index)) {
@@ -861,9 +858,10 @@ var NodeFilter = function () {
     // if (node.innerHTML && node.childNodes.length < 2) {
 
     if (node.innerHTML) {
-      console.log('node.innerHTML 17:38 ====>', node.innerHTML);
+      console.log('node.innerHTML 20:09 ====>', node.innerHTML);
       var newInnerHTML = node.innerHTML;
-      newInnerHTML.replace(this.regExp, foundTag); // const newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
+      newInnerHTML.replace(this.regExp, foundTag);
+      console.log('TEST ===>', /<([A-Za-z][A-Za-z0-9]*)\b[^>]*>(.*?)<\/\1>/.test(newInnerHTML)); // const newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       // node.innerHTML = newInnerHTML;
     }
   };
