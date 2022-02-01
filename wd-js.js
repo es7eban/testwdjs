@@ -852,10 +852,10 @@ var NodeFilter = function () {
     // if (node.firstChild && node.firstChild.childNodes.length > 2) {
     //     return;
     // }
+    // if (node.innerHTML && node.childNodes.length < 2) {
 
-    if (node.innerHTML && node.childNodes.length < 2) {
-      // if (node.innerHTML) {
-      console.log('node.innerHTML 17:35 ====>', node.innerHTML);
+    if (node.innerHTML) {
+      console.log('node.innerHTML 17:38 ====>', node.innerHTML);
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       node.innerHTML = newInnerHTML;
     }
