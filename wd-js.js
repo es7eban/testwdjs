@@ -859,11 +859,14 @@ var NodeFilter = function () {
 
     if (node.innerHTML) {
       // console.log('node.innerHTML 20:09 ====>', node.innerHTML);
-      var newInnerHTML = node.innerHTML;
-      newInnerHTML.replace(this.regExp, foundTag);
-      console.log('newInnerHTML 20:14 ====>', newInnerHTML);
-      console.log('TEST ===>', /<(?=.*? .*?\/ ?>|br|hr|input|!--|wbr)[a-z]+.*?>|<([a-z]+).*?<\/\1>/i.test(newInnerHTML)); // const newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
+      // const newInnerHTML = node.innerHTML;
+      // newInnerHTML.replace(this.regExp, foundTag);
       // node.innerHTML = newInnerHTML;
+      // console.log('newInnerHTML 20:14 ====>', newInnerHTML);
+      // console.log('TEST ===>', /<(?=.*? .*?\/ ?>|br|hr|input|!--|wbr)[a-z]+.*?>|<([a-z]+).*?<\/\1>/i.test(newInnerHTML))
+      // const newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
+      // node.innerHTML = newInnerHTML;
+      node.innerHTML.replace(this.regExp, foundTag);
     }
   };
 
