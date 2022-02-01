@@ -639,11 +639,11 @@ var KeyphraseLinkBuilder = function () {
       if (node.hasChildNodes() && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence)) {
         // const parentNode = node.parentElement;
         // parentNode.replaceChild(this.getSponsoredChild(), node);
+        console.log('linkTop node.innerHTML==>', node.innerHTML);
         node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
         newInnerHTMLList.push(node.innerHTML);
         matchedCounts++; // node.replaceChild(this.getSponsoredChild, node.firstChild())
-
-        console.log('linkTop node.innerHTML==>', node.innerHTML); // newInnerHTMLList.push((node as Element).innerHTML);
+        // newInnerHTMLList.push((node as Element).innerHTML);
         // matchedCounts++;
       }
     });
@@ -660,8 +660,8 @@ var KeyphraseLinkBuilder = function () {
       if (!(index % 2) && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence) && node.hasChildNodes()) {
         // const parentNode = node;
         // parentNode.replaceChild(this.getSponsoredChild(), node);
-        node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
         console.log('linkSpreading node.innerHTML==>', node.innerHTML);
+        node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
         newInnerHTMLList.push(node.innerHTML);
         matchedCounts++;
       }
@@ -674,8 +674,8 @@ var KeyphraseLinkBuilder = function () {
           console.log('linking odd indexes'); // const parentNode = node;
           // parentNode.replaceChild(this.getSponsoredChild(), node);
 
-          node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
           console.log('linkSpreading node.innerHTML==>', node.innerHTML);
+          node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
           newInnerHTMLList.push(node.innerHTML);
           matchedCounts++;
         }
@@ -693,8 +693,8 @@ var KeyphraseLinkBuilder = function () {
       if (node.hasChildNodes()) {
         // const parentNode = node.c;
         // parentNode.replaceChild(this.getSponsoredChild(), node);
-        node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
         console.log('linkAll node.innerHTML==>', node.innerHTML);
+        node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
         newInnerHTMLList.push(node.innerHTML);
       }
     });
