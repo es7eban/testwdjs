@@ -846,10 +846,10 @@ var NodeFilter = function () {
     // }
     //check for childrens here or before again
 
-    console.log('node.tagName 09:20 ==>', node.tagName);
-    console.log('node.hasChildNodes() 09:20 ==>', node.hasChildNodes());
+    console.log('node.tagName 09:26 ==>', node.tagName);
+    console.log('node.children.length 09:26 ==>', node.children.length);
 
-    if (node.innerHTML && !node.hasChildNodes()) {
+    if (node.innerHTML && node.children.length === 1) {
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       node.innerHTML = newInnerHTML;
     }
