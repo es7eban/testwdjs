@@ -637,14 +637,9 @@ var KeyphraseLinkBuilder = function () {
     var matchedCounts = 0;
     foundNodes.forEach(function (node) {
       if (node.hasChildNodes() && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence)) {
-        // const parentNode = node.parentElement;
-        // parentNode.replaceChild(this.getSponsoredChild(), node);
-        console.log('linkTop node.innerHTML==>', node.innerHTML);
         node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
         newInnerHTMLList.push(node.innerHTML);
-        matchedCounts++; // node.replaceChild(this.getSponsoredChild, node.firstChild())
-        // newInnerHTMLList.push((node as Element).innerHTML);
-        // matchedCounts++;
+        matchedCounts++;
       }
     });
     return newInnerHTMLList;
@@ -658,9 +653,6 @@ var KeyphraseLinkBuilder = function () {
     foundNodes.forEach(function (node, index) {
       // pair indexes
       if (!(index % 2) && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence) && node.hasChildNodes()) {
-        // const parentNode = node;
-        // parentNode.replaceChild(this.getSponsoredChild(), node);
-        console.log('linkSpreading node.innerHTML==>', node.innerHTML);
         node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
         newInnerHTMLList.push(node.innerHTML);
         matchedCounts++;
@@ -671,10 +663,6 @@ var KeyphraseLinkBuilder = function () {
       foundNodes.forEach(function (node, index) {
         // odd indexes
         if (index % 2 && matchedCounts < Number(_this.matchedPhrase.phrase.numberOfOccurrence) && node.hasChildNodes()) {
-          console.log('linking odd indexes'); // const parentNode = node;
-          // parentNode.replaceChild(this.getSponsoredChild(), node);
-
-          console.log('linkSpreading node.innerHTML==>', node.innerHTML);
           node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
           newInnerHTMLList.push(node.innerHTML);
           matchedCounts++;
@@ -691,9 +679,6 @@ var KeyphraseLinkBuilder = function () {
     var newInnerHTMLList = [];
     foundNodes.forEach(function (node) {
       if (node.hasChildNodes()) {
-        // const parentNode = node.c;
-        // parentNode.replaceChild(this.getSponsoredChild(), node);
-        console.log('linkAll node.innerHTML==>', node.innerHTML);
         node.replaceChild(_this.getSponsoredChild(), node.childNodes.item(0));
         newInnerHTMLList.push(node.innerHTML);
       }
@@ -751,21 +736,10 @@ var NodeFilter = function () {
       this.replaceAndTagKeyphraseInHtmlOf(this.nodesWithKeyphrase[index]);
     }
 
-    var matchedNodes = document.body.querySelectorAll("[data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\"]"); // this.matchedPhrase.keyphraseNodes = this.cleanNodesWithexcludedTags(matchedNodes) as [];
-
+    var matchedNodes = document.body.querySelectorAll("[data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\"]");
     this.matchedPhrase.keyphraseNodes = matchedNodes;
     return this.matchedPhrase;
-  }; // private cleanNodesWithexcludedTags(matchedNodes: Element[]): Element[] {
-  //     const cleanNodes = [];
-  //     for (let index = 0; index < matchedNodes.length; index++) {
-  //         console.log('matchedNodes[index].tagName  15:32==>', matchedNodes[index].tagName)
-  //         if (!this.excludedTags.includes(matchedNodes[index].tagName as string)) {
-  //             cleanNodes.push(matchedNodes[index]);
-  //         }
-  //     }
-  //     return cleanNodes;
-  // }
-
+  };
 
   NodeFilter.prototype.scanForChildTextNodes = function (node) {
     if (this.excludedTags.includes(node.nodeName)) {
@@ -801,16 +775,8 @@ var NodeFilter = function () {
 
   NodeFilter.prototype.processChildElement = function (nodeElement) {
     if (this.excludedTags.includes(nodeElement.tagName)) {
-      // console.log('nodeElement.tagName 15:42===>', nodeElement.tagName);
-      // console.log('nodeElement.innerHTML===>', nodeElement.innerHTML);
       return;
-    } // console.log('####processChildElement asdfadfasdfasdf 15:32####');
-    // if ((nodeElement.attributes
-    //     && nodeElement.getAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`) === 'visited')
-    //     || nodeElement.parentElement?.getAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`) === 'visited') {
-    //     return;
-    // }
-
+    }
 
     if (nodeElement.attributes && nodeElement.getAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, '')) === 'visited') {
       return;
@@ -820,19 +786,12 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.ifMatchKeyphraseStoreElement = function (nodeElement) {
-    var _a; // console.log('####ifMatchKeyphraseStoreElement asdfadfasdfasdf 13:18####');
-
+    var _a;
 
     if (nodeElement.innerHTML) {
       if (nodeElement.attributes) {
         nodeElement.setAttribute("data-dgd" + this.keyPhrase.name.replace(/\s+/g, ''), 'visited');
-      } // if (nodeElement.parentElement && nodeElement.parentElement.attributes) {
-      //     nodeElement.parentElement.setAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`, 'visited');
-      // }
-      // } else {
-      //     nodeElement.parentElement.setAttribute(`data-dgd${this.keyPhrase.name.replace(/\s+/g, '')}`, 'visited');
-      // }
-
+      }
 
       var matches = (_a = nodeElement.textContent) === null || _a === void 0 ? void 0 : _a.match(this.regExp);
 
@@ -843,29 +802,11 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.replaceAndTagKeyphraseInHtmlOf = function (node) {
-    var foundTag = "<span data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\">" + this.keyPhrase.name + "</span>"; // if (node.parentElement && node.parentElement.innerHTML) {
-    //     const newInnerHTML = node.parentElement.innerHTML.replace(this.regExp, foundTag);
-    //     node.parentElement.innerHTML = newInnerHTML;
-    // }
-    //check for childrens here or before again
-
-    console.log('node.tagName==>', node.tagName);
-    console.log('node.children.length ===>', node.children.length);
-    console.log('node.childNodes.length ===>', node.childNodes.length); // console.log('node.firstChild?.childNodes.length ===>', node.firstChild?.childNodes.length);
-    // if (node.firstChild && node.firstChild.childNodes.length > 2) {
-    //     return;
-    // }
-    // if (node.innerHTML && node.childNodes.length < 2) {
+    var foundTag = "<span data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\">" + this.keyPhrase.name + "</span>";
 
     if (node.innerHTML) {
-      // console.log('node.innerHTML 20:09 ====>', node.innerHTML);
-      // const newInnerHTML = node.innerHTML;
-      // newInnerHTML.replace(this.regExp, foundTag);
-      // node.innerHTML = newInnerHTML;
-      // console.log('newInnerHTML 20:14 ====>', newInnerHTML);
-      // console.log('TEST ===>', /<(?=.*? .*?\/ ?>|br|hr|input|!--|wbr)[a-z]+.*?>|<([a-z]+).*?<\/\1>/i.test(newInnerHTML))
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
-      node.innerHTML = newInnerHTML; // node.innerHTML.replace(this.regExp, foundTag);
+      node.innerHTML = newInnerHTML;
     }
   };
 
