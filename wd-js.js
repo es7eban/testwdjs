@@ -772,7 +772,7 @@ var NodeFilter = function () {
       return;
     }
 
-    if (node.hasChildNodes() && node.nodeType !== 3) {
+    if (node.childNodes.length > 2 && node.nodeType !== 3) {
       // console.log('node.nodeName 16:06===>', node.nodeName);
       node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
     } else {
@@ -852,9 +852,9 @@ var NodeFilter = function () {
     // if (node.firstChild && node.firstChild.childNodes.length > 2) {
     //     return;
     // }
+    // if (node.innerHTML && node.childNodes.length < 2) {
 
-    if (node.innerHTML && node.childNodes.length < 2) {
-      // if (node.innerHTML) {
+    if (node.innerHTML) {
       console.log('node.innerHTML 17:25 ====>', node.innerHTML);
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       node.innerHTML = newInnerHTML;
