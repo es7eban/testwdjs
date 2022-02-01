@@ -319,7 +319,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports.enviroment = void 0;
 exports.enviroment = {
-  excludedTags: 'path,path1,script,style,svg,img,input,button,select,option,path,hr,a,link,h1,h2,h3,h4,h5,h6'
+  excludedTags: 'path,path1,noscript,script,style,svg,img,input,button,select,option,path,hr,a,link,h1,h2,h3,h4,h5,h6'
 };
 
 /***/ }),
@@ -770,9 +770,10 @@ var NodeFilter = function () {
   NodeFilter.prototype.scanForChildTextNodes = function (node) {
     if (this.excludedTags.includes(node.nodeName)) {
       return;
-    }
+    } // if (node.childNodes.length > 2 && node.nodeType !== 3) {
 
-    if (node.childNodes.length > 2 && node.nodeType !== 3) {
+
+    if (node.hasChildNodes() && node.nodeType !== 3) {
       // console.log('node.nodeName 16:06===>', node.nodeName);
       node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
     } else {
