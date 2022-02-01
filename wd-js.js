@@ -776,6 +776,8 @@ var NodeFilter = function () {
       // console.log('node.nodeName 16:06===>', node.nodeName);
       node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
     } else {
+      console.log('node.nodeName ====>', node.nodeName);
+      console.log('(node as Element).tagName ====>', node.tagName);
       console.log("processing (node as Element).innerHTML " + this.keyPhrase.name + " ===>", node.innerHTML);
       this.processNode(node);
     }
