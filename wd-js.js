@@ -864,9 +864,8 @@ var NodeFilter = function () {
       // node.innerHTML = newInnerHTML;
       // console.log('newInnerHTML 20:14 ====>', newInnerHTML);
       // console.log('TEST ===>', /<(?=.*? .*?\/ ?>|br|hr|input|!--|wbr)[a-z]+.*?>|<([a-z]+).*?<\/\1>/i.test(newInnerHTML))
-      // const newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
-      // node.innerHTML = newInnerHTML;
-      node.innerHTML.replace(this.regExp, foundTag);
+      var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
+      node.innerHTML = newInnerHTML; // node.innerHTML.replace(this.regExp, foundTag);
     }
   };
 
