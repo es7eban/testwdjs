@@ -840,24 +840,24 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.replaceAndTagKeyphraseInHtmlOf = function (node) {
-    var foundTag = "<span data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\">" + this.keyPhrase.name + "</span>"; // if (node.parentElement && node.parentElement.innerHTML) {
+    // const foundTag = `<span data-digidip-found="dgd${this.keyPhrase.name.replace(/\s+/g, '')}dgd">${this.keyPhrase.name}</span>`;
+    // if (node.parentElement && node.parentElement.innerHTML) {
     //     const newInnerHTML = node.parentElement.innerHTML.replace(this.regExp, foundTag);
     //     node.parentElement.innerHTML = newInnerHTML;
     // }
     //check for childrens here or before again
-
     console.log('node.tagName==>', node.tagName);
     console.log('node.children.length ===>', node.children.length);
     console.log('node.childNodes.length ===>', node.childNodes.length); // console.log('node.firstChild?.childNodes.length ===>', node.firstChild?.childNodes.length);
     // if (node.firstChild && node.firstChild.childNodes.length > 2) {
     //     return;
     // }
-
-    if (node.innerHTML && node.childNodes.length < 2) {
-      console.log('node.innerHTML 17:07 ====>', node.innerHTML); // const newInnerHTML = 
-
-      node.innerHTML.replace(this.regExp, foundTag); // node.innerHTML.replace(newInnerHTML);
-    }
+    // if (node.innerHTML && node.childNodes.length < 2) {
+    //     console.log('node.innerHTML 17:07 ====>', node.innerHTML);
+    //     // const newInnerHTML = 
+    //     node.innerHTML.replace(this.regExp, foundTag);
+    //     // node.innerHTML.replace(newInnerHTML);
+    // }
   };
 
   NodeFilter.prototype.escapeRegExp = function (string) {
