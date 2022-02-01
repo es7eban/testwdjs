@@ -840,16 +840,23 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.replaceAndTagKeyphraseInHtmlOf = function (node) {
+    var _a;
+
     var foundTag = "<span data-digidip-found=\"dgd" + this.keyPhrase.name.replace(/\s+/g, '') + "dgd\">" + this.keyPhrase.name + "</span>"; // if (node.parentElement && node.parentElement.innerHTML) {
     //     const newInnerHTML = node.parentElement.innerHTML.replace(this.regExp, foundTag);
     //     node.parentElement.innerHTML = newInnerHTML;
     // }
     //check for childrens here or before again
 
-    console.log('node.tagName 09:31 ==>', node.tagName);
-    console.log('node.children.length 09:31 ==>', node.children.length);
+    console.log('node.tagName==>', node.tagName);
+    console.log('node.firstChild ===>', node.firstChild);
+    console.log('node.firstChild?.childNodes.length ===>', (_a = node.firstChild) === null || _a === void 0 ? void 0 : _a.childNodes.length);
 
-    if (node.innerHTML && node.children.length < 2) {
+    if (node.firstChild && node.firstChild.childNodes.length > 2) {
+      return;
+    }
+
+    if (node.innerHTML) {
       console.log('node.innerHTML 09:31 ====>', node.innerHTML);
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       node.innerHTML = newInnerHTML;
