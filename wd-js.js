@@ -770,19 +770,10 @@ var NodeFilter = function () {
   NodeFilter.prototype.scanForChildTextNodes = function (node) {
     if (this.excludedTags.includes(node.nodeName)) {
       return;
-    } // if (node.childNodes.length > 2 && node.nodeType !== 3) {
+    }
 
-
-    if (node.children.length > 1 && node.nodeType !== 3) {
-      // console.log('node.nodeName 16:06===>', node.nodeName);
-      // node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
-      for (var index = 0; index < node.children.length; index++) {
-        if (node.children.item(index)) {
-          this.scanForChildTextNodes(node.children.item(index));
-        }
-      } // } else if ((node as Element).firstElementChild?.children) {
-      //     this.scanForChildTextNodes((node as Element).firstElementChild as unknown as Element)
-
+    if (node.hasChildNodes() && node.nodeType !== 3) {
+      node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
     } else {
       if (this.excludedTags.includes(node.nodeName)) {
         return;
@@ -796,17 +787,19 @@ var NodeFilter = function () {
   };
 
   NodeFilter.prototype.processNode = function (childNode) {
-    // if (childNode.parentElement && childNode.parentElement.children.length > 0) {
-    //     for (let index = 0; index < childNode.parentElement.children.length; index++) {
-    //         if (childNode.parentElement.children.item(index)) {
-    //             this.processChildElement(childNode.parentElement.children.item(index) as Element);
-    //         }
-    //     }
-    // }
-    // if (childNode.parentElement && childNode.parentElement.children.length === 0) {
-    //     this.processChildElement(childNode as Element);
-    // }
-    this.processChildElement(childNode);
+    if (childNode.parentElement && childNode.parentElement.children.length > 0) {
+      for (var index = 0; index < childNode.parentElement.children.length; index++) {
+        if (childNode.parentElement.children.item(index)) {
+          this.processChildElement(childNode.parentElement.children.item(index));
+        }
+      }
+    }
+
+    if (childNode.parentElement && childNode.parentElement.children.length === 0) {
+      this.processChildElement(childNode);
+    }
+
+    return;
   };
 
   NodeFilter.prototype.processChildElement = function (nodeElement) {
