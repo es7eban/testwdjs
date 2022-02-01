@@ -847,7 +847,8 @@ var NodeFilter = function () {
     //check for childrens here or before again
 
     console.log('node.tagName==>', node.tagName);
-    console.log('node.children.length ===>', node.children.length); // console.log('node.firstChild?.childNodes.length ===>', node.firstChild?.childNodes.length);
+    console.log('node.children.length ===>', node.children.length);
+    console.log('node.childNodes.length ===>', node.childNodes.length); // console.log('node.firstChild?.childNodes.length ===>', node.firstChild?.childNodes.length);
     // if (node.firstChild && node.firstChild.childNodes.length > 2) {
     //     return;
     // }
