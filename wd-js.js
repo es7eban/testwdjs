@@ -784,6 +784,10 @@ var NodeFilter = function () {
       //     this.scanForChildTextNodes((node as Element).firstElementChild as unknown as Element)
 
     } else {
+      if (this.excludedTags.includes(node.nodeName)) {
+        return;
+      }
+
       console.log('node.nodeName ====>', node.nodeName);
       console.log('(node as Element).tagName ====>', node.tagName);
       console.log("processing (node as Element).innerHTML " + this.keyPhrase.name + " ===>", node.innerHTML);
