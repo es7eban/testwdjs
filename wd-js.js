@@ -853,7 +853,7 @@ var NodeFilter = function () {
     // }
 
     if (node.innerHTML) {
-      console.log('node.innerHTML 10:38 ====>', node.innerHTML);
+      console.log('node.innerHTML 11:56 ====>', node.innerHTML);
       var newInnerHTML = node.innerHTML.replace(this.regExp, foundTag);
       node.innerHTML = newInnerHTML;
     }
