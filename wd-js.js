@@ -854,7 +854,7 @@ var NodeFilter = function () {
     // }
 
     if (node.innerHTML && node.childNodes.length < 2) {
-      console.log('node.innerHTML 16:50 ====>', node.innerHTML); // const newInnerHTML = 
+      console.log('node.innerHTML 17:07 ====>', node.innerHTML); // const newInnerHTML = 
 
       node.innerHTML.replace(this.regExp, foundTag); // node.innerHTML.replace(newInnerHTML);
     }
