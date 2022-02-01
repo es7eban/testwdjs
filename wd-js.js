@@ -319,7 +319,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports.enviroment = void 0;
 exports.enviroment = {
-  excludedTags: 'path,path1,noscript,script,style,svg,img,input,button,select,option,path,hr,a,link,h1,h2,h3,h4,h5,h6'
+  excludedTags: 'path,path1,noscript,script,style,svg,symbol,img,input,button,select,option,path,hr,a,link,h1,h2,h3,h4,h5,h6'
 };
 
 /***/ }),
@@ -778,7 +778,7 @@ var NodeFilter = function () {
       // node.childNodes.forEach(this.scanForChildTextNodes.bind(this));
       for (var index = 0; index < node.children.length; index++) {
         if (node.children.item(index)) {
-          this.scanForChildTextNodes.bind(node.children.item(index));
+          this.scanForChildTextNodes(node.children.item(index));
         }
       }
     } else {
