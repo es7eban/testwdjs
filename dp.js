@@ -23,7 +23,7 @@ var Digidip = 1;
         element_ignore_consider_parents: "0",   // if or if not parent elements shall be considered (string; "1" or "0")
         widgets: JSON.parse('{}'),
         project: '990',
-        worddip_cdn_url: 'https://cdn.jsdelivr.net/gh/es7eban/testwdjs@d3bb91cbf9f23f286a12aaab1fedb12bd91c20db/wd-js.js',
+        worddip_cdn_url: 'https://cdn.jsdelivr.net/gh/es7eban/testwdjs@829c31a039b1acf93fdff1e105f73587c12d3846/wd-js.js',
         worddip_api_hostname: 'wds.digidip.net',
 
         // further settings, will not be changed by JS handler
